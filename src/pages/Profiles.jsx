@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import LiquidChrome from "../components/bg/LiquidCrome";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import Hyperspeed from '../components/bg/Hyperspeed';
 const Profiles = ({ onProfileSelect = null }) => {
   const navigate = useNavigate();
   const canvasRefs = useRef([]);
@@ -141,12 +141,45 @@ const Profiles = ({ onProfileSelect = null }) => {
     <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Background */}
       <div className="fixed inset-0 z-0">
-        <LiquidChrome
-          baseColor={[0.1, 0.0, 0.1]}
-          speed={0.2}
-          amplitude={0.4}
-          interactive={false}
-        />
+        <Hyperspeed
+        effectOptions={{
+          onSpeedUp: () => {},
+          onSlowDown: () => {},
+          distortion: "turbulentDistortion",
+          length: 400,
+          roadWidth: 100,
+          islandWidth: 2,
+          lanesPerRoad: 4,
+          fov: 90,
+          fovSpeedUp: 150,
+          speedUp: 2,
+          carLightsFade: 0.4,
+          totalSideLightSticks: 20,
+          lightPairsPerRoadWay: 40,
+          shoulderLinesWidthPercentage: 0.05,
+          brokenLinesWidthPercentage: 0.1,
+          brokenLinesLengthPercentage: 0.5,
+          lightStickWidth: [0.12, 0.5],
+          lightStickHeight: [1.3, 1.7],
+          movingAwaySpeed: [60, 80],
+          movingCloserSpeed: [-120, -160],
+          carLightsLength: [400 * 0.03, 400 * 0.2],
+          carLightsRadius: [0.05, 0.14],
+          carWidthPercentage: [0.3, 0.5],
+          carShiftX: [-0.8, 0.8],
+          carFloorSeparation: [0, 5],
+          colors: {
+            roadColor: 0x080808,
+            islandColor: 0x0a0a0a,
+            background: 0x000000,
+            shoulderLines: 0xffffff,
+            brokenLines: 0xffffff,
+            leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
+            rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
+            sticks: 0x03b3c3,
+          },
+        }}
+      />
       </div>
 
       {/* Content */}
@@ -159,7 +192,7 @@ const Profiles = ({ onProfileSelect = null }) => {
           transition={{ duration: 0.6 }}
         >
           <motion.h1 
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 font-creepy bg-linear-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-200 mb-4 sm:mb-6 font-creepy bg-linear-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text"
             animate={{ 
               textShadow: [
                 "0 0 10px rgba(168, 85, 247, 0.5)",
