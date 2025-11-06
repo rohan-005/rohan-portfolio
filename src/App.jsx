@@ -3,6 +3,7 @@ import Profiles from "./pages/Profiles";
 import './App.css';
 import Gamedev from "./pages/Gamedev";
 import Fullstack from "./pages/Fullstack";
+// import { GlobeDemo } from "./components/Globedemo";
 function App() {
   return (
     <Router>
@@ -10,6 +11,7 @@ function App() {
           <Route path="/" element={<Profiles/>} />
           <Route path="/gamedev" element={<Gamedev/>} />
           <Route path="/fullstack" element={<Fullstack/>} />
+          {/* <Route path="/globe" element={<GlobeDemo/>} /> */}
         </Routes>
     </Router>
   );

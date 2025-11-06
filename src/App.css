@@ -13,7 +13,7 @@
     0 87%
   );
   border-radius: 20px 0 0 0;
-  transition: clip-path 0.3s ease-in-out;
+  transition: clip-path 0.3s ease-in-out, border-radius 0.3s ease-in-out;
 }
 
 .second {
@@ -26,9 +26,10 @@
     0 100%
   );
   border-radius: 0 0 20px 20px;
-  transition: clip-path 0.3s ease-in-out;
+  transition: clip-path 0.3s ease-in-out, border-radius 0.3s ease-in-out;
 }
 
+/* Navigation Bar Shape */
 .nav {
   clip-path: polygon(
     0% 0%,
@@ -36,9 +37,8 @@
     100% 100%,
     10% 100%
   );
-  
+  transition: clip-path 0.3s ease-in-out;
 }
-
 
 /* 💻 Tablet View (slightly simplified, less steep) */
 @media (min-width: 641px) and (max-width: 1024px) {
@@ -65,17 +65,31 @@
       0 100%
     );
   }
+
+  .nav {
+    clip-path: polygon(
+      0% 0%,
+      100% 0%,
+      100% 100%,
+      20% 100%
+    );
+  }
 }
 
-/* 📱 Mobile View (simple rectangular or slightly rounded) */
+/* 📱 Mobile View (simple, flat, smoother edges) */
 @media (max-width: 640px) {
   .first {
-    clip-path: none; /* removes complex angles */
+    clip-path: none;
     border-radius: 12px 12px 0 0;
   }
 
   .second {
     clip-path: none;
     border-radius: 0 0 12px 12px;
+  }
+
+  .nav {
+    clip-path: none;
+    border-radius: 12px;
   }
 }

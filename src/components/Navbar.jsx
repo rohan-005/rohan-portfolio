@@ -1,17 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { FaGithub, FaLinkedin, FaInstagram, FaUnity, FaDiscord } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaInstagram,
+  FaUnity,
+  FaDiscord,
+} from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 
 const PillNav = ({
-items = [
-  { icon: <FaInstagram size={22} />, label: "Instagram", href: "https://www.instagram.com/yourusername", target: "_blank" },
-  { icon: <FaGithub size={22} />, label: "GitHub", href: "https://github.com/yourusername", target: "_blank" },
-  { icon: <FiMail size={22} />, label: "Mail", href: "mailto:yourmail@example.com", target: "_blank" },
-  { icon: <FaLinkedin size={22} />, label: "LinkedIn", href: "https://www.linkedin.com/in/yourusername", target: "_blank" },
-  { icon: <FaUnity size={22} />, label: "Unity", href: "https://unity.com/u/yourusername", target: "_blank" },
-  { icon: <FaDiscord size={22} />, label: "Discord", href: "https://discord.com/users/your_discord_id", target: "_blank" },
-],
+  items = [
+    { icon: <FaInstagram size={22} />, label: "Instagram", href: "https://www.instagram.com/yourusername", target: "_blank" },
+    { icon: <FaGithub size={22} />, label: "GitHub", href: "https://github.com/yourusername", target: "_blank" },
+    { icon: <FiMail size={22} />, label: "Mail", href: "mailto:yourmail@example.com", target: "_blank" },
+    { icon: <FaLinkedin size={22} />, label: "LinkedIn", href: "https://www.linkedin.com/in/yourusername", target: "_blank" },
+    { icon: <FaUnity size={22} />, label: "Unity", href: "https://unity.com/u/yourusername", target: "_blank" },
+    { icon: <FaDiscord size={22} />, label: "Discord", href: "https://discord.com/users/your_discord_id", target: "_blank" },
+  ],
   className = "",
   ease = "power3.easeOut",
   baseColor = "#077A7D",
@@ -62,16 +68,10 @@ items = [
     };
 
     layout();
-    const onResize = () => layout();
-    window.addEventListener("resize", onResize);
+    window.addEventListener("resize", layout);
 
     if (document.fonts?.ready) {
       document.fonts.ready.then(layout).catch(() => {});
-    }
-
-    const menu = mobileMenuRef.current;
-    if (menu) {
-      gsap.set(menu, { visibility: "hidden", opacity: 0, scaleY: 1, y: 0 });
     }
 
     if (initialLoadAnimation) {
@@ -84,26 +84,26 @@ items = [
       }
 
       if (navItems) {
-        gsap.set(navItems, { width: 0, overflow: "hidden" });
-        gsap.to(navItems, { width: "auto", duration: 0.6, ease });
+        gsap.set(navItems, { opacity: 0 });
+        gsap.to(navItems, { opacity: 1, duration: 0.6, ease });
       }
     }
 
-    return () => window.removeEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", layout);
   }, [items, ease, initialLoadAnimation]);
 
   const handleEnter = (i) => {
     const tl = tlRefs.current[i];
     if (!tl) return;
     activeTweenRefs.current[i]?.kill();
-    activeTweenRefs.current[i] = tl.tweenTo(tl.duration(), { duration: 0.3, ease, overwrite: "auto" });
+    activeTweenRefs.current[i] = tl.tweenTo(tl.duration(), { duration: 0.3, ease });
   };
 
   const handleLeave = (i) => {
     const tl = tlRefs.current[i];
     if (!tl) return;
     activeTweenRefs.current[i]?.kill();
-    activeTweenRefs.current[i] = tl.tweenTo(0, { duration: 0.2, ease, overwrite: "auto" });
+    activeTweenRefs.current[i] = tl.tweenTo(0, { duration: 0.2, ease });
   };
 
   const toggleMobileMenu = () => {
@@ -127,7 +127,7 @@ items = [
     if (menu) {
       if (newState) {
         gsap.set(menu, { visibility: "visible" });
-        gsap.fromTo(menu, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease });
+        gsap.fromTo(menu, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.3, ease });
       } else {
         gsap.to(menu, {
           opacity: 0,
@@ -145,61 +145,59 @@ items = [
   const cssVars = {
     ["--base"]: baseColor,
     ["--pill-bg"]: pillColor,
-    ["--hover-text"]: "#fff",
     ["--pill-text"]: "#fff",
+    ["--hover-text"]: "#fff",
     ["--nav-h"]: "42px",
     ["--pill-gap"]: "10px",
   };
 
   return (
-    <div className="absolute z-1000 w-full md:w-auto">
+    <div className="absolute z-[1000] w-full md:w-auto">
       <nav
-        className={`w-full md:w-max flex items-center justify-between md:justify-start ${className}`}
+        className={`w-full md:w-max flex items-center justify-between md:justify-start px-3 ${className}`}
         aria-label="Primary"
         style={cssVars}
       >
-        {/* Sync Up label */}
+        {/* 👾 Logo */}
         <div
           ref={logoRef}
-          className="font-creepy flex items-center justify-center text-red-200 text-4xl  pr-4"
+          className="font-creepy flex items-center justify-center text-red-200 text-3xl sm:text-4xl whitespace-nowrap"
         >
-          Sync Up - 
+          Sync Up -
         </div>
 
-        {/* Desktop */}
+        {/* 🖥️ Desktop Items */}
         <div
           ref={navItemsRef}
-          className="relative items-center rounded-full hidden md:flex ml-2"
+          className="hidden md:flex relative items-center rounded-full ml-2"
           style={{
             height: "var(--nav-h)",
-            background: "var(--base, #000)",
+            background: "var(--base)",
           }}
         >
           <ul
             role="menubar"
-            className="list-none flex items-stretch m-0 p-[3px] h-full"
-            style={{ gap: "var(--pill-gap)" }}
+            className="flex items-stretch m-0 p-[3px] h-full gap-[var(--pill-gap)]"
           >
             {items.map((item, i) => (
-              <li key={item.href} role="none" className="flex h-full group">
+              <li key={item.href} className="flex h-full group">
                 <a
-                  role="menuitem"
                   href={item.href}
                   target={item.target || "_self"}
                   rel="noopener noreferrer"
-                  className="relative overflow-hidden inline-flex items-center justify-center h-full rounded-full text-white cursor-pointer transition-all duration-300 hover:bg-white/20 hover:scale-110 px-3"
+                  className="relative overflow-hidden inline-flex items-center justify-center h-full rounded-full text-white px-3 hover:scale-110 transition-all duration-300"
                   onMouseEnter={() => handleEnter(i)}
                   onMouseLeave={() => handleLeave(i)}
                   style={{
-                    background: "var(--pill-bg, #fff)",
-                    color: "var(--pill-text, var(--base, #fff))",
+                    background: "var(--pill-bg)",
+                    color: "var(--pill-text)",
                   }}
                 >
                   <span
-                    className="text-2xl hover-circle absolute left-1/2 bottom-0 rounded-full z-1 block pointer-events-none"
-                    style={{ background: "var(--base, #000)", willChange: "transform" }}
-                    aria-hidden="true"
                     ref={(el) => (circleRefs.current[i] = el)}
+                    className="absolute left-1/2 bottom-0 rounded-full block pointer-events-none"
+                    style={{ background: "var(--base)", willChange: "transform" }}
+                    aria-hidden="true"
                   />
                   {item.icon}
                 </a>
@@ -208,65 +206,64 @@ items = [
           </ul>
         </div>
 
-        {/* Mobile Hamburger */}
+        {/* 📱 Mobile Menu Button */}
         <button
           ref={hamburgerRef}
           onClick={toggleMobileMenu}
           aria-label="Toggle menu"
           aria-expanded={isMobileMenuOpen}
-          className="md:hidden rounded-full border-0 flex flex-col items-center justify-center gap-1 cursor-pointer"
+          className="md:hidden rounded-full border-0 flex flex-col items-center justify-center gap-1"
           style={{
             width: "var(--nav-h)",
             height: "var(--nav-h)",
-            background: "var(--base, #000)",
+            background: "var(--base)",
           }}
         >
-          <span className="hamburger-line w-4 h-0.5 rounded" style={{ background: "var(--pill-bg, #fff)" }} />
-          <span className="hamburger-line w-4 h-0.5 rounded" style={{ background: "var(--pill-bg, #fff)" }} />
+          <span className="hamburger-line w-4 h-0.5 bg-white rounded" />
+          <span className="hamburger-line w-4 h-0.5 bg-white rounded" />
         </button>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* 📱 Mobile Dropdown */}
       <div
         ref={mobileMenuRef}
-        className="md:hidden absolute top-[3em] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] origin-top z-998"
+        className="md:hidden absolute top-[3.5rem] left-3 right-3 rounded-[25px] p-2 shadow-lg z-[998]"
         style={{
           ...cssVars,
-          background: "var(--base, #f0f0f0)",
+          background: "rgba(7, 122, 125, 0.9)",
+          backdropFilter: "blur(10px)",
         }}
       >
-        <ul className="list-none m-0 p-[3px] flex flex-col gap-[3px]">
+        <ul className="flex flex-col gap-2">
           {items.map((item) => (
             <li key={item.href}>
               <a
                 href={item.href}
                 target={item.target || "_self"}
                 rel="noopener noreferrer"
-                className="py-3 px-4 text-[18px] font-medium rounded-[50px] flex items-center justify-start gap-3 transition-all duration-200 hover:bg-white/20"
+                className="flex items-center gap-3 px-4 py-3 text-lg font-medium rounded-[50px] hover:bg-white/20 transition-all"
                 style={{
-                  background: "var(--pill-bg, #fff)",
-                  color: "var(--pill-text, #fff)",
+                  background: "var(--pill-bg)",
+                  color: "#fff",
                 }}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.icon}
-                <span className="text-white">{item.label}</span>
+                <span>{item.label}</span>
               </a>
             </li>
           ))}
         </ul>
       </div>
+
       <style jsx>{`
         @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
-        
         .font-creepy {
           font-family: 'Creepster', cursive;
-          letter-spacing: 1px;
         }
-
-        /* Mobile optimizations */
         @media (max-width: 640px) {
           .font-creepy {
+            font-size: 1.5rem;
             letter-spacing: 0.5px;
           }
         }

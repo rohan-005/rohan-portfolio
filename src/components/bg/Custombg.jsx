@@ -1,11 +1,12 @@
 import React from "react";
 import PillNav from "../Navbar";
 import Hyperspeed from "./Hyperspeed";
-import { FaGithub, FaLinkedin, FaInstagram, FaUnity } from "react-icons/fa";
-import { FiMail } from "react-icons/fi";
+import { GlobeDemo } from "../Globedemo";
+
 const Custombg = () => {
   return (
-    <div className="m-0 p-0 relative h-screen w-full bg-black flex items-center justify-center ">
+    <div className="relative h-screen w-full bg-gray-400 flex items-center justify-center overflow-hidden m-0 p-0">
+      {/* Hyperspeed animated background */}
       <Hyperspeed
         effectOptions={{
           onSpeedUp: () => {},
@@ -34,7 +35,7 @@ const Custombg = () => {
           carShiftX: [-0.8, 0.8],
           carFloorSeparation: [0, 5],
           colors: {
-            roadColor: 0x080808,
+            roadColor: 0xc1c1c1,
             islandColor: 0x0a0a0a,
             background: 0x000000,
             shoulderLines: 0xffffff,
@@ -45,12 +46,32 @@ const Custombg = () => {
           },
         }}
       />
-      <div className="pr-3 nav flex items-center justify-end bg-[#077A7D] h-15 w-[39%] absolute top-7 right-7.5">
-        <PillNav/>
+
+      {/* Navbar */}
+      <div className="nav absolute top-7 right-7.5 z-50 flex items-center justify-end bg-[#077A7D] h-15 w-[39%] pr-3">
+        <PillNav />
       </div>
 
-      <div className="first w-[97%] h-[60%] bg-[#8FABD4] absolute top-7"></div>
-      <div className="second w-[97%] h-[40%] bg-blue-400 absolute top-[58%]"></div>
+      {/* Top section with Globe */}
+      <div className=" first absolute top-7 w-[97%] h-[60%] bg-gray-900 rounded-xl  overflow-hidden">
+        {/* Left: 3D Globe */}
+        <div className="  absolute left-0 w-1/3 h-[95%] flex items-center justify-center">
+          <div className="relative h-full w-full scale-[0.9]">
+            <GlobeDemo />
+          </div>
+        </div>
+
+        {/* Right: Placeholder (Text / Model / Character later) */}
+        <div className="absolute right-0 w-1/2 h-full flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-white text-4xl font-bold mb-4">Welcome to the Future</h1>
+            <p className="text-white/80 text-xl">Explore the interactive globe</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom section */}
+      <div className="second absolute top-[58%] w-[97%] h-[40%] bg-cyan-800 rounded-xl"></div>
     </div>
   );
 };
