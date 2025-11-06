@@ -1,24 +1,23 @@
 import React from "react";
-import PillNav from "../Navbar";
 import Hyperspeed from "./Hyperspeed";
 import { GlobeDemo } from "../Globedemo";
+import Navbar from "../Navbar";
+import LiquidChrome from '../bg/LiquidCrome';
 
 const Custombg = () => {
   return (
     <div className="relative h-screen w-full bg-gray-400 flex items-center justify-center overflow-hidden m-0 p-0">
-      {/* Hyperspeed animated background */}
-      <Hyperspeed
+      {/* Hyperspeed Background */}
+      {/* <Hyperspeed
         effectOptions={{
-          onSpeedUp: () => {},
-          onSlowDown: () => {},
           distortion: "turbulentDistortion",
-          length: 400,
-          roadWidth: 100,
+          length: 100,
+          roadWidth: 10,
           islandWidth: 2,
           lanesPerRoad: 4,
           fov: 90,
-          fovSpeedUp: 150,
-          speedUp: 2,
+          fovSpeedUp: 1,
+          speedUp: 1,
           carLightsFade: 0.4,
           totalSideLightSticks: 20,
           lightPairsPerRoadWay: 40,
@@ -45,32 +44,38 @@ const Custombg = () => {
             sticks: 0x03b3c3,
           },
         }}
+      /> */}
+      <LiquidChrome
+        baseColor={[0, 0, 0.05]}
+        speed={0.1}
+        amplitude={0.1}
+        interactive={true}
       />
 
       {/* Navbar */}
-      <div className="nav absolute top-7 right-7.5 z-50 flex items-center justify-end bg-[#077A7D] h-15 w-[39%] pr-3">
-        <PillNav />
-      </div>
+      <Navbar />
 
-      {/* Top section with Globe */}
-      <div className=" first absolute top-7 w-[97%] h-[60%] bg-gray-900 rounded-xl  overflow-hidden">
-        {/* Left: 3D Globe */}
-        <div className="  absolute left-0 w-1/3 h-[95%] flex items-center justify-center">
-          <div className="relative h-full w-full scale-[0.9]">
+      {/* Top Section with Globe */}
+      <div className="first absolute top-7 w-[97%] h-[60%] bg-gray-900 rounded-xl overflow-hidden">
+        <div className="absolute left-0 w-1/3 h-[95%] flex items-center justify-center">
+          <div className="hidden lg:block absolute inset-0 z-0">
             <GlobeDemo />
           </div>
         </div>
 
-        {/* Right: Placeholder (Text / Model / Character later) */}
         <div className="absolute right-0 w-1/2 h-full flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-white text-4xl font-bold mb-4">Welcome to the Future</h1>
-            <p className="text-white/80 text-xl">Explore the interactive globe</p>
+            <h1 className="text-white text-4xl font-bold mb-4">
+              Welcome to the Future
+            </h1>
+            <p className="text-white/80 text-xl">
+              Explore the interactive globe
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Bottom section */}
+      {/* Bottom Section */}
       <div className="second absolute top-[58%] w-[97%] h-[40%] bg-cyan-800 rounded-xl"></div>
     </div>
   );

@@ -1,95 +1,57 @@
 @import "tailwindcss";
 
-/* 🌆 Desktop / Default (complex trapezium shapes) */
+/* 🌆 Desktop / Default */
 .first {
-  clip-path: polygon(
-    0 0,
-    50% 0,
-    55% 13%,
-    100% 13%,
-    100% 100%,
-    35% 100%,
-    30% 87%,
-    0 87%
-  );
+  clip-path: polygon(0 0, 50% 0, 55% 13%, 100% 13%, 100% 100%, 35% 100%, 30% 87%, 0 87%);
   border-radius: 20px 0 0 0;
   transition: clip-path 0.3s ease-in-out, border-radius 0.3s ease-in-out;
 }
 
 .second {
-  clip-path: polygon(
-    0 0,
-    29.5% 0,
-    35% 20%,
-    100% 20%,
-    100% 100%,
-    0 100%
-  );
+  clip-path: polygon(0 0, 29.5% 0, 35% 20%, 100% 20%, 100% 100%, 0 100%);
   border-radius: 0 0 20px 20px;
   transition: clip-path 0.3s ease-in-out, border-radius 0.3s ease-in-out;
 }
-
-/* Navigation Bar Shape */
 .nav {
-  clip-path: polygon(
-    0% 0%,
-    100% 0%,
-    100% 100%,
-    10% 100%
-  );
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 10% 100%);
   transition: clip-path 0.3s ease-in-out;
 }
 
-/* 💻 Tablet View (slightly simplified, less steep) */
+.clip-custom {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 10% 100%);
+}
+
+
+/* Optional hover effect (if you want it to animate slightly) */
+.nav:hover {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 5% 100%);
+}
+
+
+/* 💻 Tablet */
 @media (min-width: 641px) and (max-width: 1024px) {
   .first {
-    clip-path: polygon(
-      0 0,
-      28% 0,
-      33% 12%,
-      100% 12%,
-      100% 100%,
-      33% 100%,
-      28% 88%,
-      0 88%
-    );
+    clip-path: polygon(0 0, 28% 0, 33% 12%, 100% 12%, 100% 100%, 33% 100%, 28% 88%, 0 88%);
   }
-
   .second {
-    clip-path: polygon(
-      0 0,
-      28% 0,
-      33% 15%,
-      100% 15%,
-      100% 100%,
-      0 100%
-    );
+    clip-path: polygon(0 0, 28% 0, 33% 15%, 100% 15%, 100% 100%, 0 100%);
   }
-
   .nav {
-    clip-path: polygon(
-      0% 0%,
-      100% 0%,
-      100% 100%,
-      20% 100%
-    );
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 20% 100%);
   }
 }
 
-/* 📱 Mobile View (simple, flat, smoother edges) */
+/* 📱 Mobile */
 @media (max-width: 640px) {
   .first {
     clip-path: none;
     border-radius: 12px 12px 0 0;
   }
-
   .second {
     clip-path: none;
     border-radius: 0 0 12px 12px;
   }
-
   .nav {
     clip-path: none;
-    border-radius: 12px;
   }
 }

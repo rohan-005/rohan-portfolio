@@ -29,8 +29,6 @@ const Profiles = ({ onProfileSelect = null }) => {
   const handleProfileSelect = (profile) => {
     setSelectedProfile(profile);
     setShowTransition(true);
-
-    // After animation, navigate
     setTimeout(() => {
       if (onProfileSelect) onProfileSelect(profile.id);
       navigate(profile.route);
@@ -39,7 +37,6 @@ const Profiles = ({ onProfileSelect = null }) => {
 
   return (
     <div className="min-h-screen bg-gray-300 relative overflow-hidden flex flex-col items-center justify-center text-center px-4 py-10 text-gray-900">
-      {/* Animated Globe Section */}
       <AnimatePresence mode="wait">
         {!showTransition ? (
           <motion.div
@@ -47,12 +44,7 @@ const Profiles = ({ onProfileSelect = null }) => {
             className="absolute inset-0 z-0 flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{
-              opacity: 0.7,
-              scale: 0.7,
-              x: "-33%",
-              y: "-10%",
-            }}
+            exit={{ opacity: 0.7, scale: 0.7, x: "-33%", y: "-12%" }}
             transition={{ duration: 1.3, ease: "easeInOut" }}
           >
             <div className="w-full h-full opacity-70">
@@ -67,7 +59,6 @@ const Profiles = ({ onProfileSelect = null }) => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: "easeInOut" }}
           >
-            {/* Left: 3D Globe */}
             <motion.div
               className="absolute left-0 w-1/3 h-[95%] flex items-center justify-center"
               initial={{ x: "-20%", opacity: 0 }}
@@ -79,7 +70,6 @@ const Profiles = ({ onProfileSelect = null }) => {
               </div>
             </motion.div>
 
-            {/* Right: Text / Welcome */}
             <motion.div
               className="absolute right-0 w-1/2 h-full flex items-center justify-center"
               initial={{ x: "30%", opacity: 0 }}
@@ -99,7 +89,6 @@ const Profiles = ({ onProfileSelect = null }) => {
         )}
       </AnimatePresence>
 
-      {/* Animated Coding Elements */}
       {!showTransition && (
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           {[...Array(20)].map((_, i) => (
@@ -123,28 +112,15 @@ const Profiles = ({ onProfileSelect = null }) => {
               }}
             >
               {[
-                "<div>",
-                "{ }",
-                "</>",
-                "=>",
-                "const",
-                "</html>",
-                "();",
-                "<body>",
-                "if()",
-                "while()",
-                "</script>",
-                "<Game />",
-                "</Dev>",
-                "Ghost",
-                "Frosthowl",
+                "<div>", "{ }", "</>", "=>", "const", "</html>", "();",
+                "<body>", "if()", "while()", "</script>", "<Game />",
+                "</Dev>", "Ghost", "Frosthowl",
               ][Math.floor(Math.random() * 13)]}
             </motion.span>
           ))}
         </div>
       )}
 
-      {/* Content */}
       {!showTransition && (
         <div className="relative z-10 w-full flex flex-col items-center justify-center">
           <motion.h1
@@ -178,25 +154,18 @@ const Profiles = ({ onProfileSelect = null }) => {
                 transition={{ delay: index * 0.2 }}
               >
                 <div className="absolute inset-0 bg-linear-to-r from-transparent via-gray-400/10 to-transparent opacity-0 group-hover:opacity-100 animate-glow-line" />
-
-                <h2
-                  className={`text-3xl font-bold mb-3 bg-linear-to-r ${profile.color} bg-clip-text text-transparent font-audiowide tracking-wide`}
-                >
+                <h2 className={`text-3xl font-bold mb-3 bg-linear-to-r ${profile.color} bg-clip-text text-transparent font-audiowide tracking-wide`}>
                   {profile.title}
                 </h2>
                 <p className="text-gray-700 text-base mb-8 font-vt323 tracking-wide">
                   {profile.subtitle}
                 </p>
-
-                <motion.button
-                  className={`px-6 py-2 rounded-full font-semibold text-white bg-linear-to-r ${profile.color} shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_25px_rgba(0,0,0,0.3)] transition-all duration-300 font-orbitron tracking-wider`}
-                >
+                <motion.button className={`px-6 py-2 rounded-full font-semibold text-white bg-linear-to-r ${profile.color} shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_25px_rgba(0,0,0,0.3)] transition-all duration-300 font-orbitron tracking-wider`}>
                   Enter
                 </motion.button>
               </motion.div>
             ))}
           </div>
-
           <p className="text-gray-700 text-sm mt-12 font-vt323 tracking-widest">
             [ SELECT A PATH TO CONTINUE ]
           </p>
@@ -204,32 +173,16 @@ const Profiles = ({ onProfileSelect = null }) => {
       )}
 
       <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=VT323&family=Audiowide&family=Share+Tech+Mono&family=Major+Mono+Display&family=Press+Start+2P&family=Creepster&display=swap');
-
-        .font-orbitron {
-          font-family: "Creepster", cursive;
-        }
-        .font-vt323 {
-          font-family: 'VT323', monospace;
-        }
-        .font-audiowide {
-          font-family: 'Audiowide', cursive;
-        }
-        .font-codematrix {
-          font-family: 'Share Tech Mono', monospace;
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=VT323&family=Audiowide&family=Share+Tech+Mono&family=Creepster&display=swap');
+        .font-orbitron { font-family: "Creepster", cursive; }
+        .font-vt323 { font-family: 'VT323', monospace; }
+        .font-audiowide { font-family: 'Audiowide', cursive; }
+        .font-codematrix { font-family: 'Share Tech Mono', monospace; }
         @keyframes glow-line {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
         }
-        .animate-glow-line {
-          animation: glow-line 3s linear infinite;
-        }
+        .animate-glow-line { animation: glow-line 3s linear infinite; }
       `}</style>
     </div>
   );
