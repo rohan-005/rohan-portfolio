@@ -391,12 +391,12 @@ export function GlobeDemo() {
   ];
 
   return (
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full globe">
       <div className="absolute inset-0">
         <World data={sampleArcs} globeConfig={{
           ...globeConfig,
           pointSize: 3,
-          globeColor: "#062056",
+          globeColor: "#000",
           emissive: "#062056",
           emissiveIntensity: 0.15,
           atmosphereColor: "#8FABD4",

@@ -44,14 +44,15 @@
 /* 📱 Mobile */
 @media (max-width: 640px) {
   .first {
-    clip-path: none;
-    border-radius: 12px 12px 0 0;
+    background: none;
   }
   .second {
-    clip-path: none;
-    border-radius: 0 0 12px 12px;
+    background: none;
   }
   .nav {
-    clip-path: none;
+    background: transparent;
+  }
+  .globe{
+    display: none;
   }
 }

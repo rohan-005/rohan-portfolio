@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { GlobeDemo } from "../components/Globedemo";
@@ -8,6 +8,13 @@ const Profiles = ({ onProfileSelect = null }) => {
   const navigate = useNavigate();
   const [selectedProfile, setSelectedProfile] = useState(null);
   const [showTransition, setShowTransition] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const profiles = [
     {
@@ -37,8 +44,8 @@ const Profiles = ({ onProfileSelect = null }) => {
 
   return (
     <div className="min-h-screen bg-gray-300 relative overflow-hidden flex flex-col items-center justify-center text-center px-4 py-10 text-gray-900">
-      <AnimatePresence mode="wait">
-        {!showTransition ? (
+      <AnimatePresence >
+        {!showTransition && !isMobile ? (
           <motion.div
             key="centerGlobe"
             className="absolute inset-0 z-0 flex items-center justify-center"
@@ -81,7 +88,11 @@ const Profiles = ({ onProfileSelect = null }) => {
                   Welcome to the Future
                 </h1>
                 <p className="text-white/80 text-xl font-vt323">
-                  Initializing <span className="text-cyan-300">"{selectedProfile?.title}"</span> mode...
+                  Initializing{" "}
+                  <span className="text-cyan-300">
+                    "{selectedProfile?.title}"
+                  </span>{" "}
+                  mode...
                 </p>
               </div>
             </motion.div>
@@ -90,11 +101,11 @@ const Profiles = ({ onProfileSelect = null }) => {
       </AnimatePresence>
 
       {!showTransition && (
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden w-full">
           {[...Array(20)].map((_, i) => (
             <motion.span
               key={i}
-              className="absolute text-gray-800/30 text-2xl font-codematrix"
+              className="absolute text-black text-4xl font-codematrix"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -111,11 +122,25 @@ const Profiles = ({ onProfileSelect = null }) => {
                 delay: Math.random() * 5,
               }}
             >
-              {[
-                "<div>", "{ }", "</>", "=>", "const", "</html>", "();",
-                "<body>", "if()", "while()", "</script>", "<Game />",
-                "</Dev>", "Ghost", "Frosthowl",
-              ][Math.floor(Math.random() * 13)]}
+              {
+                [
+                  "<div>",
+                  "{ }",
+                  "</>",
+                  "=>",
+                  "const",
+                  "</html>",
+                  "();",
+                  "<body>",
+                  "if()",
+                  "while()",
+                  "</script>",
+                  "<Game />",
+                  "</Dev>",
+                  "Ghost",
+                  "Frosthowl",
+                ][Math.floor(Math.random() * 13)]
+              }
             </motion.span>
           ))}
         </div>
@@ -154,13 +179,17 @@ const Profiles = ({ onProfileSelect = null }) => {
                 transition={{ delay: index * 0.2 }}
               >
                 <div className="absolute inset-0 bg-linear-to-r from-transparent via-gray-400/10 to-transparent opacity-0 group-hover:opacity-100 animate-glow-line" />
-                <h2 className={`text-3xl font-bold mb-3 bg-linear-to-r ${profile.color} bg-clip-text text-transparent font-audiowide tracking-wide`}>
+                <h2
+                  className={`text-3xl font-bold mb-3 bg-linear-to-r ${profile.color} bg-clip-text text-transparent font-audiowide tracking-wide`}
+                >
                   {profile.title}
                 </h2>
                 <p className="text-gray-700 text-base mb-8 font-vt323 tracking-wide">
                   {profile.subtitle}
                 </p>
-                <motion.button className={`px-6 py-2 rounded-full font-semibold text-white bg-linear-to-r ${profile.color} shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_25px_rgba(0,0,0,0.3)] transition-all duration-300 font-orbitron tracking-wider`}>
+                <motion.button
+                  className={`px-6 py-2 rounded-full font-semibold text-white bg-linear-to-r ${profile.color} shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_25px_rgba(0,0,0,0.3)] transition-all duration-300 font-orbitron tracking-wider`}
+                >
                   Enter
                 </motion.button>
               </motion.div>
@@ -173,16 +202,30 @@ const Profiles = ({ onProfileSelect = null }) => {
       )}
 
       <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=VT323&family=Audiowide&family=Share+Tech+Mono&family=Creepster&display=swap');
-        .font-orbitron { font-family: "Creepster", cursive; }
-        .font-vt323 { font-family: 'VT323', monospace; }
-        .font-audiowide { font-family: 'Audiowide', cursive; }
-        .font-codematrix { font-family: 'Share Tech Mono', monospace; }
-        @keyframes glow-line {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
+        @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=VT323&family=Audiowide&family=Share+Tech+Mono&family=Creepster&display=swap");
+        .font-orbitron {
+          font-family: "Creepster", cursive;
         }
-        .animate-glow-line { animation: glow-line 3s linear infinite; }
+        .font-vt323 {
+          font-family: "VT323", monospace;
+        }
+        .font-audiowide {
+          font-family: "Audiowide", cursive;
+        }
+        .font-codematrix {
+          font-family: "Share Tech Mono", monospace;
+        }
+        @keyframes glow-line {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+        .animate-glow-line {
+          animation: glow-line 3s linear infinite;
+        }
       `}</style>
     </div>
   );
