@@ -53,7 +53,7 @@ const Profiles = ({ onProfileSelect = null }) => {
             className="absolute inset-0 z-0 flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0.7, scale: 0.7, x: "-33%", y: "-12%" }}
+            exit={{ opacity: 0.7, scale: 0.7, x: "33%", y: "-12%" }}
             transition={{ duration: 1.3, ease: "easeInOut" }}
           >
             <div className="w-full h-full opacity-70">
@@ -70,7 +70,7 @@ const Profiles = ({ onProfileSelect = null }) => {
           >
             <motion.div
               className="absolute left-0 w-1/3 h-[95%] flex items-center justify-center"
-              initial={{ x: "-20%", opacity: 0 }}
+              initial={{ x: "20%", opacity: 0 }}
               animate={{ x: "0%", opacity: 1 }}
               transition={{ delay: 0.3, duration: 1.3, ease: "easeOut" }}
             >
