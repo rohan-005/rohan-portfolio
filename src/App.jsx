@@ -5,6 +5,7 @@ import Gamedev from "./pages/Gamedev";
 import Fullstack from "./pages/Fullstack";
 import Projectsgame from './pages/Projectsgame';
 import Projectsfull from './pages/Projectsfull';
+import SkillsAchievements from "./pages/SkillsAchievements";
 // import { GlobeDemo } from "./components/Globedemo";
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/fullstack" element={<Fullstack/>} />
           <Route path="/projectsfull" element={<Projectsfull/>} />
           <Route path="/projectsgame" element={<Projectsgame/>} />
+          <Route path="/skills" element={<SkillsAchievements/>} />
         </Routes>
     </Router>
   );
