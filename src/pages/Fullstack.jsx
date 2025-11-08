@@ -60,14 +60,13 @@ const Fullstack = () => {
   return (
     <div className="custombg-container">
       <div className="liq-bg">
-
-      <LiquidChrome
-        baseColor={[0, 0, 0.05]}
-        speed={0.1}
-        amplitude={0.1}
-        interactive={true}
-      />
-      {/* <LiquidChrome
+        <LiquidChrome
+          baseColor={[0, 0, 0.05]}
+          speed={0.1}
+          amplitude={0.1}
+          interactive={true}
+        />
+        {/* <LiquidChrome
         baseColor={[0, 0, 0.05]}
         speed={0.1}
         amplitude={0.1}
@@ -117,15 +116,17 @@ const Fullstack = () => {
               <span className="rotating-text">
                 <RotatingText
                   texts={[
-                    "Unity3D",
-                    "Unreal Engine",
-                    "C#",
-                    "C++",
-                    "Blender",
-                    "Mixamo",
-                    "2D Games",
-                    "3D Games",
-                    "Level Design",
+                    "HTML",
+                    "CSS",
+                    "JavaScript",
+                    "React",
+                    "Node.js",
+                    "Next.js",
+                    "Express.js",
+                    "PHP",
+                    "MySQL",
+                    "MongoDB",
+                    "REST APIs",
                   ]}
                   staggerFrom={"last"}
                   initial={{ y: "100%" }}
@@ -139,18 +140,15 @@ const Fullstack = () => {
               </span>
             </h1>
             <p className="first-section-desc">
-              Creative Game Developer skilled in building immersive 2D and 3D
-              experiences using Unity, Blender, and Mixamo. Experienced in
-              developing games like{" "}
-              <span className="font-semibold text-red-500">
-                The Heist Sprint
-              </span>{" "}
-              and{" "}
-              <span className="font-semibold text-red-500">
-                The Timber Curse
-              </span>
-              . Strong background in C#, C++, and Java with solid
-              problem-solving and algorithmic skills.
+              Full Stack Developer skilled in creating responsive and
+              interactive web applications using the{" "}
+              <span className="font-semibold text-blue-400">MERN</span> and{" "}
+              <span className="font-semibold text-blue-400">Next.js</span>{" "}
+              stacks. Experienced in developing platforms like{" "}
+              <span className="font-semibold text-green-500">Byte-Code</span>,{" "}
+              <span className="font-semibold text-green-500">Renzaar</span>, and{" "}
+              <span className="font-semibold text-green-500">StikBit</span>,
+              showcasing strong expertise in modern web development. 
             </p>
           </div>
         </div>
@@ -163,7 +161,7 @@ const Fullstack = () => {
             Switch Profile
           </button>
           <a
-            href="/Rohan_Dhanerwal_CV.pdf"
+            href="../data/fullstack1-final.pdf"
             download
             className="download-cv-btn"
           >
@@ -272,7 +270,6 @@ const Fullstack = () => {
           <span className="font-bold">PROJECTS</span>
           <Folder size={2} color="#000" />
         </div>
-        
       </div>
     </div>
   );

@@ -163,7 +163,7 @@ const Gamedev = () => {
             Switch Profile
           </button>
           <a
-            href="/Rohan_Dhanerwal_CV.pdf"
+            href="../data/gamedeveloper-1.pdf"
             download
             className="download-cv-btn"
           >

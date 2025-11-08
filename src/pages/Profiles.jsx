@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { GlobeDemo } from "../components/Globedemo";
 import LiquidChrome from "../components/bg/LiquidCrome";
-
+import '../App.css';
 const Profiles = ({ onProfileSelect = null }) => {
   const navigate = useNavigate();
   const [selectedProfile, setSelectedProfile] = useState(null);
@@ -56,7 +56,7 @@ const Profiles = ({ onProfileSelect = null }) => {
             exit={{ opacity: 0.7, scale: 0.7, x: "33%", y: "-12%" }}
             transition={{ duration: 1.3, ease: "easeInOut" }}
           >
-            <div className="w-full h-full opacity-70">
+            <div className="w-full h-full opacity-70 globe">
               <GlobeDemo />
             </div>
           </motion.div>

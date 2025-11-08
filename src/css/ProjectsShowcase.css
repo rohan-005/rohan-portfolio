@@ -472,7 +472,19 @@
   border-left: 4px solid #0e1128;
   background: linear-gradient(135deg, rgba(14, 17, 40, 0.1), rgba(59, 130, 246, 0.1));
 }
-
+/* Add these to your existing technology-specific colors in ProjectsShowcase.css */
+.tech-tag.html { 
+  border-left: 4px solid #e34f26;
+  background: linear-gradient(135deg, rgba(227, 79, 38, 0.1), rgba(59, 130, 246, 0.1));
+}
+.tech-tag.sql { 
+  border-left: 4px solid #4479a1;
+  background: linear-gradient(135deg, rgba(68, 121, 161, 0.1), rgba(59, 130, 246, 0.1));
+}
+.tech-tag.php { 
+  border-left: 4px solid #777bb4;
+  background: linear-gradient(135deg, rgba(119, 123, 180, 0.1), rgba(59, 130, 246, 0.1));
+}
 /* Animation Classes */
 .fade-in {
   animation: fadeIn 0.8s ease-in-out;
