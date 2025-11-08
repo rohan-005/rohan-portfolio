@@ -8,6 +8,7 @@ import RotatingText from "../components/text/Rotatingtext";
 import emailjs from "@emailjs/browser";
 import "../css/Custombg.css";
 import Folder from "../components/Folder";
+import FlowingMenu from "../components/BounceCards";
 
 const Gamedev = () => {
   const [showContactModal, setShowContactModal] = useState(false);
@@ -56,18 +57,39 @@ const Gamedev = () => {
 
     e.target.reset();
   };
+  const demoItems = [
+    {
+      link: "#",
+      text: "Unity",
+      image: "./unity.png",
+    },
+    {
+      link: "#",
+      text: "Blender",
+      image: "./blender.png",
+    },
+    {
+      link: "#",
+      text: "ThreeJS",
+      image: "./three.png",
+    },
+    {
+      link: "#",
+      text: "Mixamo",
+      image: "./mix.png",
+    },
+  ];
 
   return (
     <div className="custombg-container">
       <div className="liq-bg">
-
-      <LiquidChrome
-        baseColor={[0, 0, 0.05]}
-        speed={0.1}
-        amplitude={0.1}
-        interactive={true}
-      />
-      {/* <LiquidChrome
+        <LiquidChrome
+          baseColor={[0, 0, 0.05]}
+          speed={0.1}
+          amplitude={0.1}
+          interactive={true}
+        />
+        {/* <LiquidChrome
         baseColor={[0, 0, 0.05]}
         speed={0.1}
         amplitude={0.1}
@@ -264,15 +286,12 @@ const Gamedev = () => {
           <span className="font-bold mb-10">PROJECTS</span>
           <Folder size={2} color="#000" />
         </div>
-        <div className="folder-cont z-101">
-          <span className="font-bold">PROJECTS</span>
-          <Folder size={2} color="#000" />
+        <div className="card-cont z-101">
+          <span className="font-bold">SKILLS & ACHIVEMENTS</span>
+          <div className="h-full w-full m-0 ">
+            <FlowingMenu items={demoItems} />
+          </div>
         </div>
-        <div className="folder-cont z-101">
-          <span className="font-bold">PROJECTS</span>
-          <Folder size={2} color="#000" />
-        </div>
-        
       </div>
     </div>
   );

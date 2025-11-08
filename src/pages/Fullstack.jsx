@@ -8,6 +8,7 @@ import RotatingText from "../components/text/Rotatingtext";
 import emailjs from "@emailjs/browser";
 import "../css/Custombg.css";
 import Folder from "../components/Folder";
+import FlowingMenu from "../components/BounceCards";
 
 const Fullstack = () => {
   const [showContactModal, setShowContactModal] = useState(false);
@@ -56,6 +57,28 @@ const Fullstack = () => {
 
     e.target.reset();
   };
+  const demoItems = [
+    {
+      link: "#",
+      text: "NextJS",
+      image: "./next.png",
+    },
+    {
+      link: "#",
+      text: "React",
+      image: "./react.jpg",
+    },
+    {
+      link: "#",
+      text: "NodeJS",
+      image: "./node.png",
+    },
+    {
+      link: "#",
+      text: "ThreeJS",
+      image: "./three.png",
+    },
+  ];
 
   return (
     <div className="custombg-container">
@@ -262,13 +285,11 @@ const Fullstack = () => {
           <span className="font-bold mb-10">PROJECTS</span>
           <Folder size={2} color="#000" />
         </div>
-        <div className="folder-cont z-101">
-          <span className="font-bold">PROJECTS</span>
-          <Folder size={2} color="#000" />
-        </div>
-        <div className="folder-cont z-101">
-          <span className="font-bold">PROJECTS</span>
-          <Folder size={2} color="#000" />
+        <div className="card-cont z-101">
+          <span className="font-bold">SKILLS & ACHIVEMENTS</span>
+          <div className="h-full w-full m-0 ">
+            <FlowingMenu items={demoItems} />
+          </div>
         </div>
       </div>
     </div>
