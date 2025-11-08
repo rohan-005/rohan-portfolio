@@ -37,6 +37,7 @@ const ProjectsShowcase = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeCard, setActiveCard] = useState(null);
   const cardRefs = useRef([]);
+  const [isMobile, setIsMobile] = useState(false);
 
   const projects = [
     {
@@ -107,7 +108,21 @@ const ProjectsShowcase = () => {
     }
   ];
 
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const handleMouseMove = (e, cardId) => {
+    if (isMobile) return;
+
     const card = cardRefs.current[cardId];
     if (!card) return;
 
@@ -122,6 +137,8 @@ const ProjectsShowcase = () => {
   };
 
   const handleMouseLeave = (cardId) => {
+    if (isMobile) return;
+
     const card = cardRefs.current[cardId];
     if (card) {
       card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0px) scale(1)';
@@ -131,6 +148,27 @@ const ProjectsShowcase = () => {
 
   const handleCardClick = (project) => {
     window.open(project.demoLink || project.repoLink, '_blank');
+  };
+
+  // Mobile touch feedback
+  const handleTouchStart = (cardId) => {
+    if (!isMobile) return;
+    
+    const card = cardRefs.current[cardId];
+    if (card) {
+      card.style.transform = 'translateY(-5px) scale(1.01)';
+    }
+  };
+
+  const handleTouchEnd = (cardId) => {
+    if (!isMobile) return;
+    
+    const card = cardRefs.current[cardId];
+    if (card) {
+      setTimeout(() => {
+        card.style.transform = 'translateY(0px) scale(1)';
+      }, 150);
+    }
   };
 
   useEffect(() => {
@@ -166,7 +204,7 @@ const ProjectsShowcase = () => {
     return (
       <motion.span 
         className={`tech-tag ${tech}`}
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ scale: isMobile ? 1 : 1.05 }}
         transition={{ type: "spring", stiffness: 400 }}
       >
         {techData.icon}
@@ -184,11 +222,11 @@ const ProjectsShowcase = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <Link to="/" className="back-button">
+          <Link to="/gamedev" className="back-button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M19 12H5M12 19l-7-7 7-7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            ← Return Home
+            Return
           </Link>
         </motion.div>
 
@@ -200,15 +238,12 @@ const ProjectsShowcase = () => {
           transition={{ duration: 0.8 }}
         >
           <h1 className="projects-title">
-            Digital Creations
+            Forged in Code & Engines
             <br />
             <span style={{fontSize: 'clamp(1.8rem, 4vw, 3rem)', opacity: 0.9}}>Portfolio</span>
           </h1>
           <p className="projects-subtitle">
-            Where Imagination Meets Implementation
-          </p>
-          <p className="creative-tagline">
-            Crafting immersive digital experiences through innovative code and creative design
+            Building robust, scalable, and visually engaging digital products.
           </p>
         </motion.div>
 
@@ -231,6 +266,8 @@ const ProjectsShowcase = () => {
                 className="timeline-content"
                 onMouseMove={(e) => handleMouseMove(e, project.id)}
                 onMouseLeave={() => handleMouseLeave(project.id)}
+                onTouchStart={() => handleTouchStart(project.id)}
+                onTouchEnd={() => handleTouchEnd(project.id)}
                 onClick={() => handleCardClick(project)}
                 whileHover={{ 
                   transition: { duration: 0.2 }
@@ -258,7 +295,7 @@ const ProjectsShowcase = () => {
                     <polyline points="15 3 21 3 21 9" strokeWidth="2" strokeLinecap="round"/>
                     <line x1="10" y1="14" x2="21" y2="3" strokeWidth="2" strokeLinecap="round"/>
                   </svg>
-                  Click to explore project
+                  {isMobile ? 'Tap to explore project' : 'Click to explore project'}
                 </div>
               </motion.div>
             </motion.div>

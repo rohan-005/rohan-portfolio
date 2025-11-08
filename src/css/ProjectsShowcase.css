@@ -8,6 +8,30 @@
   overflow-x: hidden;
 }
 
+/* Frosthowl Watermark */
+.projects-showcase::after {
+  content: 'FROSTHOWL';
+  position: fixed;
+  top: 45%;
+  left: 55%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  font-size: 15vw;
+  font-weight: 900;
+  background: linear-gradient(135deg, 
+    #7f7070 0%, 
+    #463c3c83 50%, 
+    #063f65 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  z-index: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0.4;
+  text-shadow: 0 0 100px rgba(170, 176, 187, 0.1);
+  letter-spacing: 2vw;
+}
+
 /* Subtle Background Effect */
 .projects-showcase::before {
   content: '';
@@ -35,11 +59,11 @@
 .back-button {
   position: absolute;
   top: 2rem;
-  left: 2rem;
+  left: -10rem;
   padding: 0.8rem 1.5rem;
-  background: rgba(59, 130, 246, 0.15);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  color: #60a5fa;
+  /* background: rgba(59, 130, 246, 0.15); */
+  border: 1px solid rgba(197, 199, 203, 0.3);
+  color: #ffffff;
   border-radius: 9999px;
   font-weight: 600;
   text-decoration: none;
@@ -63,18 +87,23 @@
   text-align: center;
   margin-bottom: 4rem;
   padding-top: 4rem;
+  position: relative;
+  z-index: 2;
 }
 
 .projects-title {
-  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-size: clamp(1.5rem, 8vw, 4rem);
   font-weight: 800;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 30%, #06b6d4 70%, #a855f7 100%);
+  margin-top: 50px;
+  background: blue;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1.1;
   text-shadow: 0 0 50px rgba(59, 130, 246, 0.3);
+  position: relative;
+  z-index: 2;
 }
 
 .projects-subtitle {
@@ -83,6 +112,8 @@
   margin-bottom: 2rem;
   font-style: italic;
   font-weight: 300;
+  position: relative;
+  z-index: 2;
 }
 
 .creative-tagline {
@@ -91,6 +122,8 @@
   margin-top: 1rem;
   font-weight: 300;
   letter-spacing: 0.5px;
+  position: relative;
+  z-index: 2;
 }
 
 /* Timeline Styles */
@@ -98,6 +131,7 @@
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
+  z-index: 2;
 }
 
 .timeline::before {
@@ -116,6 +150,7 @@
   position: relative;
   margin-bottom: 5rem;
   width: 100%;
+  z-index: 2;
 }
 
 .timeline-content {
@@ -133,6 +168,7 @@
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
   overflow: hidden;
+  z-index: 2;
 }
 
 .timeline-item:nth-child(odd) .timeline-content {
@@ -185,7 +221,7 @@
   background: linear-gradient(135deg, #3b82f6, #06b6d4, #8b5cf6);
   border-radius: 50%;
   border: 4px solid #000000;
-  z-index: 2;
+  z-index: 3;
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
   animation: pulse 2s infinite;
 }
@@ -453,10 +489,17 @@
   }
 }
 
-/* Mobile Styles */
+/* ===== MOBILE STYLES ===== */
 @media (max-width: 768px) {
+  .projects-showcase::after {
+    font-size: 25vw;
+    opacity: 0.3;
+    letter-spacing: 1vw;
+    transform: translate(-50%, -50%) rotate(-10deg);
+  }
+
   .projects-container {
-    padding: 1rem;
+    padding: 1rem 0.5rem;
   }
 
   .back-button {
@@ -464,34 +507,47 @@
     left: 1rem;
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
+    backdrop-filter: blur(20px);
+    background: rgba(59, 130, 246, 0.2);
   }
 
   .projects-header {
     padding-top: 5rem;
     margin-bottom: 2rem;
+    padding: 0 1rem;
   }
 
   .projects-title {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
   }
 
   .projects-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    padding: 0 0.5rem;
   }
 
   .timeline::before {
-    left: 30px;
+    left: 25px;
+    width: 2px;
   }
 
   .timeline-dot {
-    left: 30px;
+    left: 25px;
+    width: 20px;
+    height: 20px;
+    border-width: 3px;
   }
 
   .timeline-content {
-    width: calc(100% - 70px);
-    margin-left: 70px !important;
+    width: calc(100% - 50px);
+    margin-left: 50px !important;
     margin-right: 0 !important;
-    padding: 1.8rem;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    backdrop-filter: blur(20px);
   }
 
   .timeline-year {
@@ -502,44 +558,101 @@
     transform: none;
     margin-bottom: 1rem;
     display: inline-block;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
   }
 
   .timeline-item {
-    margin-bottom: 4rem;
-  }
-
-  .tech-tag {
-    padding: 0.8rem 1.2rem;
-    font-size: 0.9rem;
-    min-width: 120px;
-  }
-
-  .devicon {
-    font-size: 1.5rem;
-    width: 24px;
-    height: 24px;
+    margin-bottom: 3rem;
   }
 
   .project-title {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
+    line-height: 1.3;
   }
 
+  .project-category {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .technologies {
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tech-tag {
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    min-width: 110px;
+    border-radius: 1rem;
+  }
+
+  .devicon {
+    font-size: 1.4rem;
+    width: 20px;
+    height: 20px;
+  }
+
+  .click-indicator {
+    font-size: 0.8rem;
+    padding: 0.6rem 1rem;
+    margin-top: 0.8rem;
+  }
+
+  /* Mobile-specific hover states */
   .timeline-content:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-5px) scale(1.01);
+  }
+
+  /* Better touch interactions */
+  .timeline-content:active {
+    transform: translateY(-2px) scale(1);
+    transition: all 0.1s ease;
+  }
+
+  /* Stack technologies vertically on very small screens */
+  @media (max-width: 380px) {
+    .technologies {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .tech-tag {
+      min-width: 100%;
+      justify-content: flex-start;
+    }
   }
 }
 
 /* Tablet Styles */
 @media (min-width: 768px) and (max-width: 1024px) {
+  .projects-showcase::after {
+    font-size: 30vw;
+    opacity: 0.35;
+  }
+
   .timeline-content {
     width: 40%;
   }
   
   .timeline-item:nth-child(odd) .timeline-year {
-    right: -110px;
+    right: -100px;
   }
 
   .timeline-item:nth-child(even) .timeline-year {
-    left: -110px;
+    left: -100px;
+  }
+
+  .tech-tag {
+    min-width: 130px;
+    padding: 0.8rem 1.2rem;
   }
 }
