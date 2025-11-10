@@ -2,7 +2,7 @@
 .skills-achievements {
   position: relative;
   min-height: 100vh;
-  background: #000000;
+  /* background: #000000; */
   color: white;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
@@ -95,9 +95,9 @@
   font-weight: 800;
   margin-bottom: 1rem;
   margin-top: 50px;
-  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 30%, #06b6d4 70%, #a855f7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+color: black;  
+/* -webkit-background-clip: text; */
+  /* -webkit-text-fill-color: transparent; */
   background-clip: text;
   line-height: 1.1;
   text-shadow: 0 0 50px rgba(59, 130, 246, 0.3);
@@ -125,7 +125,7 @@
 
 /* Section Cards */
 .skills-section {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgb(0, 0, 0);
   backdrop-filter: blur(25px);
   border-radius: 2rem;
   border: 1px solid rgba(59, 130, 246, 0.2);
@@ -425,7 +425,7 @@
 }
 
 .stat-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0);
   backdrop-filter: blur(20px);
   border-radius: 1.5rem;
   border: 1px solid rgba(59, 130, 246, 0.2);

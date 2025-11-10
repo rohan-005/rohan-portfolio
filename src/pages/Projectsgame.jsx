@@ -278,7 +278,50 @@ const ProjectsShowcase = () => {
   };
 
   return (
-    <div className="projects-showcase">
+    <div className="projects-showcase bg-linear-to-r from-blue-900 to-gray-900 w-full">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden w-full">
+        {[...Array(20)].map((_, i) => (
+          <motion.span
+            key={i}
+            className="absolute text-black text-4xl font-codematrix"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: ["0%", "120%"],
+              opacity: [0.3, 0.8, 0],
+              rotate: [0, 360],
+            }}
+            transition={{
+              duration: 10 + Math.random() * 10,
+              repeat: Infinity,
+              ease: "linear",
+              delay: Math.random() * 5,
+            }}
+          >
+            {
+              [
+                "<div>",
+                "{ }",
+                "</>",
+                "=>",
+                "const",
+                "</html>",
+                "();",
+                "<body>",
+                "if()",
+                "while()",
+                "</script>",
+                "<Game />",
+                "</Dev>",
+                "Ghost",
+                "Frosthowl",
+              ][Math.floor(Math.random() * 1)]
+            }
+          </motion.span>
+        ))}
+      </div>
       <div className="projects-container">
         {/* Back Button */}
         <motion.div
@@ -315,7 +358,6 @@ const ProjectsShowcase = () => {
           <h1 className="projects-title">
             Forged in Code & Engines
             <br />
-            
           </h1>
           <p className="projects-subtitle">
             Building robust, scalable, and visually engaging digital products.
@@ -407,12 +449,20 @@ const ProjectsShowcase = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          
           <p className="projects-subtitle">
-            Level 1: The Beginning &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; May/2023..........
+            Level 1: The Beginning &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            May/2023..........
           </p>
         </motion.div>
       </div>
+      <style jsx>{`
+        @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=VT323&family=Audiowide&family=Share+Tech+Mono&family=Creepster&display=swap");
+        
+        .font-codematrix {
+          font-family: "Share Tech Mono", monospace;
+        }
+        
+      `}</style>
     </div>
   );
 };

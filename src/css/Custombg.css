@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: #0f1115;
+  /* background: linear-gradient(blue, gray); */
   margin: 0;
   padding: 0;
 }
@@ -25,8 +25,8 @@
   top: 1.75rem;
   width: 95%;
   height: 60%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.746);
+  /* backdrop-filter: blur(20px); */
   border-radius: 1rem;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
   overflow: hidden;
@@ -81,10 +81,11 @@
 
 .rotating-text {
   display: block;
-  margin-top: 0.5rem;
-  font-weight: 700;
+  margin-top: 0.6rem;
+  font-weight: 500;
   color: #f87171;
-  font-size: clamp(1rem, 2.5vw, 2rem);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+
 }
 
 .first-section-desc {
@@ -116,9 +117,9 @@
 .buttons-container a {
   width: 100%;
   max-width: 16rem;
-  padding: 0.8rem 1.5rem;
-  font-size: clamp(1rem, 1.5vw, 2rem);
-  font-weight: 600;
+  padding: 1rem 1rem;
+  font-size: clamp(1rem, 1.5vw, 1.8rem);
+  font-weight: 500;
   border-radius: 9999px;
   transition: all 0.3s ease-in-out;
   text-align: center;
@@ -314,20 +315,20 @@
   top: 58%;
   width: 95%;
   height: 40%;
-  background-color: rgba(6, 182, 212, 0.7);
+  background: rgba(0, 0, 0, 0.746);
   border-radius: 1rem;
   padding: 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: space-evenly; */
+  justify-content: space-evenly;
   gap: 60px;
 }
 
 .folder-cont {
   width: 20%;
   /* height: 100%; */
-  background-color: #374151;
+  background-color: #525855af;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -342,7 +343,7 @@
 .card-cont{
   width: 50%;
   height: 80%;
-  background-color: #374151;
+  background-color: #525855af;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -362,7 +363,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(15, 17, 21, 0.5);
+    /* background: rgba(15, 17, 21, 0.5); */
     backdrop-filter: blur(15px);
     z-index: 5;
     /* height: 100%; */
@@ -375,7 +376,8 @@
     /* align-items: center; */
     /* justify-content: center; */
     overflow: scroll;
-    background-color: black;
+    /* background-color: black; */
+    background: linear-gradient(rgb(60, 60, 122) ,rgb(76, 74, 74));
     /* margin: 0; */
     /* padding: 0; */
   }
@@ -392,7 +394,7 @@
     border-radius: 0 !important;
     padding: 1rem !important;
     background: none !important;
-    backdrop-filter: none !important;
+    /* backdrop-filter: none !important; */
   }
 
   .first-section {
@@ -400,7 +402,9 @@
     height: auto;
     top: 0.5rem;
     padding: 1rem;
-    backdrop-filter: blur(20px);
+    /* backdrop-filter: blur(20px); */
+    box-shadow: none;
+
   }
 
   .first-section-text h1 {
@@ -446,6 +450,7 @@
     height: 32vh;
     /* padding: 2rem; */
     /* gap: 2rem; */
+    margin-top: 50px;
   }
 
   .card-cont{

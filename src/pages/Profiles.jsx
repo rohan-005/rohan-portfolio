@@ -44,7 +44,7 @@ const Profiles = ({ onProfileSelect = null }) => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-r from-blue-900 to-gray-600 relative overflow-hidden flex flex-col items-center justify-center text-center px-4 py-10 text-gray-900">
+    <div className="min-h-screen bg-linear-to-r from-blue-900 to-gray-900 relative overflow-hidden flex flex-col items-center justify-center text-center px-4 py-10 text-gray-900">
     
       <AnimatePresence>
         {!showTransition && !isMobile ? (

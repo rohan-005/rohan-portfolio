@@ -40,9 +40,9 @@ const TechLogos = {
     icon: <Devicon name="vite-plain" className="devicon" />,
     name: "Vite",
   },
-  css: { 
-    icon: <Devicon name="css3-plain" className="devicon" />, 
-    name: "CSS" 
+  css: {
+    icon: <Devicon name="css3-plain" className="devicon" />,
+    name: "CSS",
   },
   html: {
     icon: <Devicon name="html5-plain" className="devicon" />,
@@ -108,9 +108,9 @@ const TechLogos = {
     icon: <Devicon name="unrealengine-original" className="devicon" />,
     name: "Unreal Engine",
   },
-  threejs: { 
-    icon: <ThreeJSLogo />, 
-    name: "ThreeJS" 
+  threejs: {
+    icon: <ThreeJSLogo />,
+    name: "ThreeJS",
   },
   sql: {
     icon: <Devicon name="mysql-plain" className="devicon" />,
@@ -131,6 +131,27 @@ const ProjectsShowcase = () => {
   const projects = [
     {
       id: 1,
+      title: "Personal Portfolio",
+      category: "web",
+      year: "November/2025",
+      description:
+        "Built a personsal portfolio to showcase my projects and skills",
+      technologies: [
+        "react",
+        // "nodejs",
+        // "express",
+        "mongodb",
+        // "javascript",
+        "tailwind",
+        "css",
+
+      ],
+      demoLink: "https://workwithme-virid.vercel.app/",
+      repoLink: "https://workwithme-virid.vercel.app/",
+      featured: true,
+    },
+    {
+      id: 11,
       title: "Byte-Code",
       category: "web",
       year: "October/2025",
@@ -197,7 +218,7 @@ const ProjectsShowcase = () => {
       repoLink: "https://stikbit.vercel.app/",
       featured: true,
     },
-    
+
     {
       id: 5,
       title: "Hiest Sprint",
@@ -205,15 +226,12 @@ const ProjectsShowcase = () => {
       year: "July/2025",
       description:
         "Custom React-based website, powered by Vite and styled with TailwindCSS — blending smooth performance with a sleek design",
-      technologies: [
-        "react",
-        "javascript",
-        "tailwind",
-      ],
+      technologies: ["react", "javascript", "tailwind"],
       demoLink: "https://hiestsprintweb.vercel.app/",
       repoLink: "https://hiestsprintweb.vercel.app/",
       featured: true,
-    },{
+    },
+    {
       id: 6,
       title: "Bid For It",
       category: "web",
@@ -337,7 +355,50 @@ const ProjectsShowcase = () => {
   };
 
   return (
-    <div className="projects-showcase">
+    <div className="projects-showcase bg-linear-to-r from-blue-900 to-gray-900 w-full">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden w-full">
+        {[...Array(20)].map((_, i) => (
+          <motion.span
+            key={i}
+            className="absolute text-black text-4xl font-codematrix"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: ["0%", "120%"],
+              opacity: [0.3, 0.8, 0],
+              rotate: [0, 360],
+            }}
+            transition={{
+              duration: 10 + Math.random() * 10,
+              repeat: Infinity,
+              ease: "linear",
+              delay: Math.random() * 5,
+            }}
+          >
+            {
+              [
+                "<div>",
+                "{ }",
+                "</>",
+                "=>",
+                "const",
+                "</html>",
+                "();",
+                "<body>",
+                "if()",
+                "while()",
+                "</script>",
+                "<Game />",
+                "</Dev>",
+                "Ghost",
+                "Frosthowl",
+              ][Math.floor(Math.random() * 13)]
+            }
+          </motion.span>
+        ))}
+      </div>
       <div className="projects-container">
         {/* Back Button */}
         <motion.div
@@ -374,7 +435,6 @@ const ProjectsShowcase = () => {
           <h1 className="projects-title">
             From Idea to Deployment
             <br />
-            
           </h1>
           <p className="projects-subtitle">
             Building robust, scalable, and visually engaging digital products.
@@ -472,6 +532,13 @@ const ProjectsShowcase = () => {
           </p>
         </motion.div>
       </div>
+      <style jsx>{`
+        @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=VT323&family=Audiowide&family=Share+Tech+Mono&family=Creepster&display=swap");
+
+        .font-codematrix {
+          font-family: "Share Tech Mono", monospace;
+        }
+      `}</style>
     </div>
   );
 };

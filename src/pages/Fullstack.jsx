@@ -81,20 +81,51 @@ const Fullstack = () => {
   ];
 
   return (
-    <div className="custombg-container">
+    <div className="custombg-container bg-linear-to-r from-blue-900 to-gray-900">
       <div className="liq-bg">
-        <LiquidChrome
-          baseColor={[0, 0, 0.05]}
-          speed={0.1}
-          amplitude={0.1}
-          interactive={true}
-        />
-        {/* <LiquidChrome
-        baseColor={[0, 0, 0.05]}
-        speed={0.1}
-        amplitude={0.1}
-        interactive={true}
-      /> */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden w-full">
+          {[...Array(20)].map((_, i) => (
+            <motion.span
+              key={i}
+              className="absolute text-black text-4xl font-codematrix"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: ["0%", "120%"],
+                opacity: [0.3, 0.8, 0],
+                rotate: [0, 360],
+              }}
+              transition={{
+                duration: 10 + Math.random() * 10,
+                repeat: Infinity,
+                ease: "linear",
+                delay: Math.random() * 5,
+              }}
+            >
+              {
+                [
+                  "<div>",
+                  "{ }",
+                  "</>",
+                  "=>",
+                  "const",
+                  "</html>",
+                  "();",
+                  "<body>",
+                  "if()",
+                  "while()",
+                  "</script>",
+                  "<Game />",
+                  "</Dev>",
+                  "Ghost",
+                  "Frosthowl",
+                ][Math.floor(Math.random() * 13)]
+              }
+            </motion.span>
+          ))}
+        </div>
       </div>
       <Navbar />
 
@@ -171,7 +202,7 @@ const Fullstack = () => {
               <span className="font-semibold text-green-500">Byte-Code</span>,{" "}
               <span className="font-semibold text-green-500">Renzaar</span>, and{" "}
               <span className="font-semibold text-green-500">StikBit</span>,
-              showcasing strong expertise in modern web development. 
+              showcasing strong expertise in modern web development.
             </p>
           </div>
         </div>

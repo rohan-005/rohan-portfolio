@@ -9,6 +9,7 @@ import emailjs from "@emailjs/browser";
 import "../css/Custombg.css";
 import Folder from "../components/Folder";
 import FlowingMenu from "../components/BounceCards";
+// import React from "react";
 
 const Gamedev = () => {
   const [showContactModal, setShowContactModal] = useState(false);
@@ -81,20 +82,51 @@ const Gamedev = () => {
   ];
 
   return (
-    <div className="custombg-container">
+    <div className="custombg-container bg-linear-to-r from-blue-900 to-gray-900">
       <div className="liq-bg">
-        <LiquidChrome
-          baseColor={[0, 0, 0.05]}
-          speed={0.1}
-          amplitude={0.1}
-          interactive={true}
-        />
-        {/* <LiquidChrome
-        baseColor={[0, 0, 0.05]}
-        speed={0.1}
-        amplitude={0.1}
-        interactive={true}
-      /> */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden w-full">
+          {[...Array(20)].map((_, i) => (
+            <motion.span
+              key={i}
+              className="absolute text-black text-4xl font-codematrix"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: ["0%", "120%"],
+                opacity: [0.3, 0.8, 0],
+                rotate: [0, 360],
+              }}
+              transition={{
+                duration: 10 + Math.random() * 10,
+                repeat: Infinity,
+                ease: "linear",
+                delay: Math.random() * 5,
+              }}
+            >
+              {
+                [
+                  "<div>",
+                  "{ }",
+                  "</>",
+                  "=>",
+                  "const",
+                  "</html>",
+                  "();",
+                  "<body>",
+                  "if()",
+                  "while()",
+                  "</script>",
+                  "<Game />",
+                  "</Dev>",
+                  "Ghost",
+                  "Frosthowl",
+                ][Math.floor(Math.random() * 13)]
+              }
+            </motion.span>
+          ))}
+        </div>
       </div>
       <Navbar />
 
@@ -296,8 +328,18 @@ const Gamedev = () => {
           <span className="font-bold mb-10 sign">Rohan</span>
         </div>
       </div>
+      <style jsx>{`
+        @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=VT323&family=Audiowide&family=Share+Tech+Mono&family=Creepster&display=swap");
+        
+        .font-codematrix {
+          font-family: "Share Tech Mono", monospace;
+        }
+        
+      `}</style>
     </div>
+    
   );
+  
 };
 
 export default Gamedev;
