@@ -375,9 +375,9 @@
     /* display: flex; */
     /* align-items: center; */
     /* justify-content: center; */
-    overflow: scroll;
+    overflow-y: scroll;
     /* background-color: black; */
-    background: linear-gradient(rgb(60, 60, 122) ,rgb(76, 74, 74));
+    background: linear-gradient(rgb(60, 60, 122) ,rgb(36, 34, 34));
     /* margin: 0; */
     /* padding: 0; */
   }
